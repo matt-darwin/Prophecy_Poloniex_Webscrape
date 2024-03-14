@@ -1,0 +1,56 @@
+name: Poloniex_Webscrape
+description: Project to showcase web-scraping potential with Prophecy
+version: 0.0.1
+author: null
+language: python
+buildSystem: ''
+buildSystemDetails:
+  artefactID: poloniexwebscrape
+  parentArtefactID: ''
+  buildSystem: wheel
+  author: null
+  createdAt: '2024-03-14 09:36:30'
+pipelines: {}
+datasets: {}
+templates: {}
+jobs: {}
+gemContainer:
+  languageVersion: ''
+  gemLibsVersion: ''
+  gems: {}
+  dependencies: null
+functions:
+  author: null
+  createdAt: '2024-03-14 09:36:30'
+  udfs: {}
+  udafs: {}
+  expressions: {}
+  airflowFunctions: {}
+subgraphs: {}
+sqlModels: {}
+sqlMacros: {}
+sqlSeeds: {}
+sqlSources: {}
+sqlUnreferencedSources: {}
+sqlPipeline: null
+dependencies: '[]'
+projectDependencies:
+  '12654':
+    projectUID: 12654
+    projectName: ProphecySparkBasicsPython
+    repositoryPath: gitUri=http://gitserver:3000/DxEheDCJ_team_5751/DxEheDCJ_project_12654.git&subPath=
+    version: 0.2.4
+    isDefault: true
+    author: null
+    createdAt: '2024-03-14 08:53:57'
+  '12655':
+    projectUID: 12655
+    projectName: ProphecyWarehousePython
+    repositoryPath: gitUri=http://gitserver:3000/DxEheDCJ_team_5751/DxEheDCJ_project_12655.git&subPath=
+    version: 0.0.3
+    isDefault: true
+    author: null
+    createdAt: '2024-03-14 08:53:57'
+flags:
+  shouldAddDefaultDependenciesIfAbsent: true
+pipelineConfigurations: {}
