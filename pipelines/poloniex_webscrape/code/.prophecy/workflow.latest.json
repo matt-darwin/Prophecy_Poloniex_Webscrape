@@ -1,0 +1,260 @@
+{
+  "metainfo" : {
+    "migrationVersions" : {
+      "gemBuilderVersion" : "v1"
+    },
+    "codeGenConfiguration" : {
+      "editableConfig" : true
+    },
+    "id" : "1",
+    "uri" : "pipelines/poloniex_webscrape",
+    "language" : "python",
+    "fabricId" : "4134",
+    "frontEndLanguage" : "sql",
+    "mode" : "batch",
+    "udfs" : {
+      "language" : "python",
+      "udfs" : [ ],
+      "functionPackageName" : "matthewprophecyioteam.poloniexwebscrape.functions",
+      "sharedFunctionPackageNames" : [ "prophecy.spark_basic.functions", "prophecy.warehouse.functions" ]
+    },
+    "udafs" : {
+      "language" : "python",
+      "code" : ""
+    },
+    "configuration" : {
+      "common" : {
+        "type" : "record",
+        "fields" : [ {
+          "name" : "currency_pair",
+          "kind" : {
+            "type" : "string",
+            "value" : "BTC_USDT"
+          },
+          "optional" : false,
+          "comment" : "The currency pair for the Poloniex Exchange",
+          "isWorkflowNodeConfiguration" : false,
+          "isReferenced" : false
+        }, {
+          "name" : "limit",
+          "kind" : {
+            "type" : "int",
+            "value" : 1000
+          },
+          "optional" : false,
+          "comment" : "The limit that we are applying to the trades",
+          "isWorkflowNodeConfiguration" : false,
+          "isReferenced" : false
+        } ]
+      },
+      "oldCommon" : {
+        "type" : "record",
+        "fields" : [ ]
+      },
+      "fabrics" : { },
+      "instances" : { },
+      "selected" : "Etherium",
+      "nonEditable" : [ ],
+      "isSubscribedPipelineWithPipelineConfigs" : false
+    },
+    "sparkConf" : [ ],
+    "hadoopConf" : [ ],
+    "codeMode" : "sparse",
+    "buildSystem" : "maven",
+    "externalDependencies" : [ ],
+    "dependentProjectExternalDependencies" : [ {
+      "projectUID" : "12654",
+      "projectName" : "ProphecySparkBasicsPython",
+      "externalDependencies" : [ ]
+    }, {
+      "projectUID" : "12655",
+      "projectName" : "ProphecyWarehousePython",
+      "externalDependencies" : [ ]
+    } ],
+    "isImported" : false,
+    "interimMode" : "Full",
+    "interimModeEnabled" : true,
+    "visualCodeInterimMode" : "Disabled",
+    "recordsLimit" : {
+      "enabled" : false,
+      "value" : 1000
+    },
+    "topLevelPackage" : "poloniex_webscrape",
+    "configurationVersion" : "v1"
+  },
+  "connections" : [ {
+    "id" : "zP-QrA0jciNmL7RwC_JUb$$ctTZfVIyWLGFaL9pXp7F7",
+    "source" : "OVvEOc5RuSr6xHBSN8pyV$$ZCocu0ljPaPFqxavWzfbo",
+    "sourcePort" : "KRzjJJWAftJyecnluPxHO$$BvmMJ-7cxdXiZ0G87dRBt",
+    "target" : "g1LwMZTZlxqn7XETNVbQM$$RLAV5jDjR8QE76P1yhOGi",
+    "targetPort" : "JPLLD8YMNwv3Ed_cKKuXz$$oE60nlWpqX8FMP9Bidq7A"
+  } ],
+  "processes" : {
+    "OVvEOc5RuSr6xHBSN8pyV$$ZCocu0ljPaPFqxavWzfbo" : {
+      "id" : "OVvEOc5RuSr6xHBSN8pyV$$ZCocu0ljPaPFqxavWzfbo",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "poloniex_trades",
+        "slug" : "poloniex_trades",
+        "x" : 280,
+        "y" : 240,
+        "phase" : 0,
+        "cache" : false,
+        "detailedStats" : false,
+        "isImported" : false
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "KRzjJJWAftJyecnluPxHO$$BvmMJ-7cxdXiZ0G87dRBt",
+          "slug" : "out"
+        } ],
+        "selectedInputFields" : [ ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "properties" : {
+        "datasetId" : "datasets/poloniex_trades"
+      }
+    },
+    "g1LwMZTZlxqn7XETNVbQM$$RLAV5jDjR8QE76P1yhOGi" : {
+      "id" : "g1LwMZTZlxqn7XETNVbQM$$RLAV5jDjR8QE76P1yhOGi",
+      "component" : "Script",
+      "metadata" : {
+        "label" : "json_to_columns",
+        "slug" : "json_to_columns",
+        "x" : 440,
+        "y" : 240,
+        "phase" : 0,
+        "cache" : false,
+        "detailedStats" : false,
+        "isImported" : false
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "JPLLD8YMNwv3Ed_cKKuXz$$oE60nlWpqX8FMP9Bidq7A",
+          "slug" : "in0",
+          "schema" : {
+            "type" : "struct",
+            "fields" : [ {
+              "name" : "id",
+              "type" : "long",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
+              "name" : "url",
+              "type" : "string",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
+              "name" : "content",
+              "type" : "binary",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            } ]
+          },
+          "isStreaming" : false
+        } ],
+        "outputs" : [ {
+          "id" : "WHe5gOZanc2EvMhHW4D5Z$$99v9j_AhD8Zip819iIUcL",
+          "slug" : "out0",
+          "schema" : {
+            "type" : "struct",
+            "fields" : [ {
+              "name" : "id_out",
+              "type" : "integer",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
+              "name" : "price_out",
+              "type" : "decimal(12,0)",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
+              "name" : "quantity_out",
+              "type" : "decimal(12,0)",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
+              "name" : "amount_out",
+              "type" : "decimal(12,0)",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
+              "name" : "takerSide_out",
+              "type" : "string",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
+              "name" : "ts_out",
+              "type" : "double",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
+              "name" : "createTime_out",
+              "type" : "double",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            } ]
+          },
+          "isStreaming" : false
+        } ],
+        "selectedInputFields" : [ ],
+        "isCustomOutputSchema" : true,
+        "autoUpdateOnRun" : true
+      },
+      "properties" : {
+        "script" : "column_data = in0.withColumn(\"json_content\", decode(col(\"content\"), 'utf-8'))\n\njson_line_schema = StructType([StructField(\"id\", IntegerType())\n                        , StructField(\"price\", DecimalType(12.4))\n                        , StructField(\"quantity\", DecimalType(12.4))\n                        , StructField(\"amount\", DecimalType(12.4))\n                        , StructField(\"takerSide\", StringType())\n                        , StructField(\"ts\", DoubleType())\n                        , StructField(\"createTime\", DoubleType())])\n\njson_doc_schema = ArrayType(StringType())\n\ndf = column_data.withColumn(\"converted_json\", from_json(\"json_content\", json_doc_schema))\\\n    .withColumn(\"exploded_data\", explode(\"converted_json\"))\\\n    .withColumn(\"data\", from_json(\"exploded_data\", json_line_schema))\\\n    .withColumn(\"id_out\", col(\"data.id\"))\\\n    .withColumn(\"price_out\", col(\"data.price\"))\\\n    .withColumn(\"quantity_out\", col(\"data.quantity\"))\\\n    .withColumn(\"amount_out\", col(\"data.amount\"))\\\n    .withColumn(\"takerSide_out\", col(\"data.takerSide\"))\\\n    .withColumn(\"ts_out\", col(\"data.ts\"))\\\n    .withColumn(\"createTime_out\", col(\"data.createTime\"))\n\nout0 = df.select(df.id_out, df.price_out, df.quantity_out, df.amount_out, df.takerSide_out, df.ts_out, df.createTime_out)",
+        "scriptMethodHeader" : "def Script(spark: SparkSession, in0: DataFrame) -> DataFrame:",
+        "scriptMethodFooter" : "    return out0"
+      }
+    }
+  },
+  "ports" : {
+    "inputs" : [ ],
+    "outputs" : [ ],
+    "selectedInputFields" : [ ],
+    "isCustomOutputSchema" : false,
+    "autoUpdateOnRun" : false
+  }
+}
